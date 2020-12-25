@@ -1,0 +1,282 @@
+@import "materiallize";
+
+/* Переменные */
+$baseColor: #474a51;
+$hoverColor: #5e6065;
+
+$textColor: #bdbcbc;
+$textHover: #ffa31f;
+
+$borderRadius: 5px;
+$animationSpeed: 1s;
+/* ------------------------ */
+
+/* Основные элементы */
+* {
+    font-family: "Comic Sans", sans-serif; font-weight: bolder;
+}
+
+body {
+    margin: 0; padding: 0;
+}
+
+.card {
+    background: $baseColor; color: $textColor;
+    padding: calc(1.5vw + 1.5vh) !important;
+
+    &> .material-placeholder {
+        width: calc(10vw + 10vh); height: calc(10vw + 10vh);
+        margin-right: calc(1vw + 1vh);
+        float: left !important;
+
+        &> .photo {
+            width: 100%;
+        }
+    }
+}
+/* ------------------------ */
+
+/* Меню */
+nav {
+    background: $baseColor;
+    text-align: center;
+}
+/* ------------------------ */
+
+/* Список товаров */
+.products {
+    display: grid; grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    padding-top: calc(1vw + 1vh);
+
+    &> .product {
+        position: relative; height: 300px;
+        display: flex; align-items: flex-end;
+        background-size: cover; background-position: center;
+        text-align: center; justify-content: center;
+        border-radius: $borderRadius;
+        cursor: pointer;
+
+        &:hover {
+            &>.price, .title {
+                opacity: 0.2;
+            }
+        }
+
+        &> .price {
+            position: absolute; top: 0; left: 0;
+            background: $baseColor; color: $textColor;
+            padding: 10px;
+            border-radius: $borderRadius 0 0 0 ;
+            transition: opacity $animationSpeed;
+
+            @extend .z-depth-2;
+        }
+
+        &> .title {
+            background: $baseColor; color: $textColor;
+            width: 100%;
+            padding: 10px;
+            border-radius: 0 0 $borderRadius $borderRadius; transform: translateY(1px);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            transition: opacity $animationSpeed;
+
+            @extend .z-depth-2;
+        }
+
+        &.more {
+            align-items: center;
+        }
+
+        @extend .z-depth-1;
+    }
+}
+
+.fixed-action-btn {
+    &> .btn-floating {
+        background: $baseColor; color: $textColor;
+
+        &:hover {
+            background: $hoverColor;
+
+            @extend .z-depth-3;
+        }
+
+        @extend .z-depth-3;
+    }
+
+    > ul {
+        left: auto; right: 0;
+        transform: translateX(10%);
+
+        &> li {
+            cursor: pointer;
+
+            &> .category {
+                background: $baseColor; color: $textColor;
+                padding: 10px;
+                border-radius: $borderRadius;
+                transition: background $animationSpeed;
+
+                &:hover {
+                    background: $hoverColor;
+                }
+            }
+        }
+    }
+}
+/* ------------------------ */
+
+/* Товар */
+.product {
+    &> .title {
+        color: white;
+        font-size: calc(0.7vw + 1vh);
+
+        &> .small {
+            color: $textColor;
+            font-size: calc(0.4vw + 0.8vh);
+        }
+    }
+
+    &> .content {
+        display: flex;
+        margin-top: calc(1vw + 1vh);
+
+        &> .information {
+            &> .material-placeholder > .photo {
+                height: calc(15vw + 12vh);
+                border-radius: $borderRadius;
+
+                @extend .z-depth-2;
+            }
+
+            &> .contact {
+                margin-top: calc(1vw + 1vh);
+            }
+        }
+
+        &> .desc {
+            color: white;
+            margin-left: calc(1vw + 1vh);
+            font-size: calc(0.6vw + 1vh);
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .product {
+        &> .content {
+            flex-direction: column;
+
+            &> .information {
+                align-self: center;
+
+                &> .material-placeholder > .photo {
+                    height: calc(15vw + 20vh);
+                }
+            }
+
+            &> .desc {
+                margin-left: 0;
+                margin-top: calc(1vw + 1vh);
+            }
+        }
+    }
+}
+/* ------------------------ */
+
+/* Авторизация */
+input {
+    color: $textColor;
+    transition: all $animationSpeed;
+
+    &:focus {
+        border-bottom: solid 1px $textHover !important;
+        box-shadow: none !important;
+    }
+}
+
+.prefix.active {
+    color: $textHover !important;
+    transition: color $animationSpeed;
+}
+
+.btn {
+    display: flex; justify-content: center; align-items: center;
+    background: $textHover;
+    width: 100%; height: calc(2vw + 2.5vh);
+    text-transform: none; font-size: calc(2vw + 1vh);
+    transition: all $animationSpeed;
+
+    &:hover, &:focus {
+        background: $textHover;
+        transform: scale(1.02);
+
+        @extend .z-depth-2;
+    }
+}
+/* ------------------------ */
+
+/* Панель управления */
+.delete {
+    cursor: pointer;
+    transition: color $animationSpeed;
+
+    &:hover {
+        color: $textHover;
+    }
+}
+
+.search {
+    margin-top: calc(1vw + 1vh) !important;
+}
+/* ------------------------ */
+
+/* Добавление товара */
+textarea {
+    color: $textColor;
+}
+/* ------------------------ */
+
+/* Анимации */
+.animation {
+    animation: fadein $animationSpeed;
+}
+
+.animation-out {
+    animation: fadeout $animationSpeed;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeout {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+/* ------------------------ */
+
+/* Уведомления */
+.toast {
+    background-color: $baseColor; color: $textColor;
+
+    @extend .z-depth-3;
+}
+/* ------------------------ */
+
+/* Скроллбар */
+::-webkit-scrollbar-track {
+    background-color: #1d1d1d;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 180px;
+}
+
+::-webkit-scrollbar {
+    width: .5vw;
+}
+/* ------------------------ */
