@@ -5,7 +5,8 @@ export const useAPI = () => {
 
     const request = useCallback(async (url, method = "GET", body = null, headers = { }) => {
         try {
-            const response = await fetch(`http://ly3.nyashmyash99.ru/${url}`, { method,
+            // TODO: Заменить на необходимую ссылку.
+            const response = await fetch(`http://localhost/${url}`, { method,
                 body: (body ? JSON.stringify(body) : null),
                 headers: (body ? { ...headers, "Content-Type": "application/json" } : { ...headers })
             });

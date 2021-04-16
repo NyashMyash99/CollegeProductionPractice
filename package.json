@@ -6,14 +6,22 @@
     "description": "Сайт для производственной практики колледжа.",
     "main": "app.ts",
     "scripts": {
-        "server": "nodemon app.ts",
-        "client": "npm run start --prefix client",
-        "dev": "concurrently \"npm run server\" \"npm run client\""
+        "client-dev": "npm run start --prefix client",
+        "server-dev": "nodemon app.ts",
+        "client-prod": "npm run start --prefix client",
+        "server-prod": "ts-node app.ts",
+        "dev": "concurrently \"npm run client-dev\" \"npm run server-dev\"",
+        "prod": "concurrently \"npm run client-prod\" \"npm run server-prod\""
     },
     "dependencies": {
+        "typescript": "^4.2.4",
+        "ts-node": "^9.1.1",
         "concurrently": "^5.3.0",
         "express": "^4.17.1",
         "md5": "^2.3.0",
         "mongoose": "^5.11.8"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.7"
     }
 }
