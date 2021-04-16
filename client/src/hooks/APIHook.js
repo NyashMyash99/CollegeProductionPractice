@@ -5,8 +5,8 @@ export const useAPI = () => {
 
     const request = useCallback(async (url, method = "GET", body = null, headers = { }) => {
         try {
-            // TODO: Заменить на необходимую ссылку.
-            const response = await fetch(`http://localhost/${url}`, { method,
+            // TODO: Заменить на порт, указанный в ../config.ts.
+            const response = await fetch(`http://localhost:80/${url}`, { method,
                 body: (body ? JSON.stringify(body) : null),
                 headers: (body ? { ...headers, "Content-Type": "application/json" } : { ...headers })
             });

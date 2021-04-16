@@ -1,6 +1,6 @@
 const port = 80;
 
-// TODO: Заменить на необходимые данные.
+// TODO: Заменить на действующие данные от базы данных.
 const dbHost = "localhost";
 const dbPort = 27017;
 const dbUser = "NyashMyash99";
